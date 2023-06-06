@@ -44,3 +44,34 @@ function getClassByRate(vote){
         return 'red'
     }
 }
+
+// slider
+const slidesContainer = document.querySelector('.slides');
+const prevBtn = document.querySelector('.prev-btn');
+const nextBtn = document.querySelector('.next-btn');
+const slides = Array.from(slidesContainer.getElementsByTagName('img'));
+
+let currentIndex = 0;
+
+function showSlide(index) {
+  slidesContainer.style.transform = `translateX(-${index * 100}%)`;
+}
+
+function nextSlide() {
+  currentIndex++;
+  if (currentIndex >= slides.length) {
+    currentIndex = 0;
+  }
+  showSlide(currentIndex);
+}
+
+function prevSlide() {
+  currentIndex--;
+  if (currentIndex < 0) {
+    currentIndex = slides.length - 1;
+  }
+  showSlide(currentIndex);
+}
+
+nextBtn.addEventListener('click', nextSlide);
+prevBtn.addEventListener('click', prevSlide);
